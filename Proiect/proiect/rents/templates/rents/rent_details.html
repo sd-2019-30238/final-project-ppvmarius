@@ -1,0 +1,24 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<div class="rent-detail">
+  <div class="rent">
+    <h2>ID: {{ rent.id }}</h2>
+    <p>Client: {{ rent.client.username }}
+    <p>Car: {{ rent.car.name }}
+    <p>Price: {{ rent.car.price }}
+    <p>Placed on: {{ rent.date }}
+    <p>Status: {{ rent.status }}
+    {% if user.is_staff %}
+    <form class="edit-form" action="{% url 'rents:modify' %}" method="post">
+      {% csrf_token %}
+      <select class="options" name="current_status">
+        <option value="unconfirmed">Unconfirmed</option>
+        <option value="confirmed">Confirmed</option>
+      </select>
+      <input type="hidden" name="rent_id" value={{ rent.id }}>
+      <input type="submit" value="Modify">
+    </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

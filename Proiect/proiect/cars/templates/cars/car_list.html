@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+  <form class="filter-items" action="{% url 'cars:list' %}" method="post">
+    {% csrf_token %}
+    <select class="filters" name="filter">
+      <option value="name">Name</option>
+      <option value="price">Price</option>
+    </select>
+    <input type="submit" value="Filter">
+  </form>
+  <h1>This is the list of available cars:</h1>
+  <div class="furnitures">
+    {% for car in cars %}
+      <div class="car">
+        <h2><a href="{% url 'cars:detail' slug=car.slug %}">{{ car.name }}</a></h2>
+        <p>{{ car.getSnippet }}
+        <p>Price: {{ car.price }}
+        <p>Manufacturing date: {{ car.manufactDate }}
+      </div>
+    {% endfor %}
+</div>
+{% endblock %}
