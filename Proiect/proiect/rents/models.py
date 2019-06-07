@@ -12,5 +12,7 @@ class Rent(models.Model):
     car = models.ForeignKey(carModels.Car, default=None)
     status = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
+    startDate = models.DateTimeField()
+    endDate = models.DateTimeField()
     def __str__(self):
         return str(self.id)

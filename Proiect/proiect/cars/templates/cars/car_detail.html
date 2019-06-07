@@ -5,11 +5,13 @@
   <div class="car">
     <h2>Nume: {{ car.name }}</h2>
     <p>Descriere: {{ car.description }}</p>
-    <p>Pre: {{ car.price }}</p>
+    <p>Pret per day: {{ car.price }}</p>
     <p>Numar masini disponibile: {{ car.available }}</p>
     <img src="{{ car.thumb.url }}" width="20%"/>
     <form class="rent-form" action="{% url 'rents:add_rent' %}" method="post">
       {% csrf_token %}
+      StartDate:<input type="date" name="startDate">
+      EndDate:<input type="date" name="endDate">
       <input type="hidden" name="carModel" value={{ car.slug }}>
       <input type="submit" value="Request car">
     </form>

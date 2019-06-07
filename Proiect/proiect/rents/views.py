@@ -12,10 +12,15 @@ def add_rent(request):
             rent = Rent()
             temp_car = carModels.Car.objects.get(slug=request.POST.get('carModel'))
             temp_car.available = temp_car.available - 1
+            startD = int(request.POST.get('startDate')[-2:])
+            endD = int(request.POST.get('endDate')[-2:])
+            temp_car.price = temp_car.price * (endD - startD + 1)
             temp_car.save()
             rent.car = temp_car
             rent.client = request.user
             rent.status = "Unconfirmed"
+            rent.startDate = request.POST.get('startDate')
+            rent.endDate = request.POST.get('endDate')
             rent.save()
         return render(request, 'rents/addedRent.html')
 
