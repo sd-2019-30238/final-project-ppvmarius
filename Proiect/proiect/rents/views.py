@@ -21,6 +21,9 @@ def add_rent(request):
             rent.status = "Unconfirmed"
             rent.startDate = request.POST.get('startDate')
             rent.endDate = request.POST.get('endDate')
+            rent.driver = request.POST.get('sofer')
+            rent.delivered = request.POST.get('delivered')
+            rent.adresa = request.POST.get('adresa')
             rent.save()
         return render(request, 'rents/addedRent.html')
 

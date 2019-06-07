@@ -14,5 +14,8 @@ class Rent(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     startDate = models.DateTimeField()
     endDate = models.DateTimeField()
+    driver = models.CharField(max_length=50)
+    delivered = models.CharField(max_length=50)
+    adresa = models.CharField(max_length=50, default="None")
     def __str__(self):
         return str(self.id)

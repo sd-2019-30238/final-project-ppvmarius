@@ -10,8 +10,15 @@
     <img src="{{ car.thumb.url }}" width="20%"/>
     <form class="rent-form" action="{% url 'rents:add_rent' %}" method="post">
       {% csrf_token %}
-      StartDate:<input type="date" name="startDate">
-      EndDate:<input type="date" name="endDate">
+      StartDate:<input type="date" name="startDate"><br>
+      EndDate:<input type="date" name="endDate"><br>
+      Livrare la adresa:<br>
+      <input type="radio" name="delivered" value="No">No<br>
+      <input type="radio" name="delivered" value="Yes" checked>Yes<br>
+      Adresa:<br>
+      <input type="text" name="adresa"><br>
+      Sofer:<br><input type="radio" name="sofer" value="No" checked>No<br>
+      <input type="radio" name="sofer" value="Yes">Yes<br>
       <input type="hidden" name="carModel" value={{ car.slug }}>
       <input type="submit" value="Request car">
     </form>
